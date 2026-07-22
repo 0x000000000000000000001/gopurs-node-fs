@@ -31,7 +31,7 @@
     "purescript-maybe": "^6.0.0",
     "purescript-node-buffer": "^9.0.0",
     "purescript-node-path": "^5.0.0",
-    "purescript-node-streams": "^9.0.0",
+    "purescript-node-streams": "9.0.0",
     "purescript-nullable": "^6.0.0",
     "purescript-partial": "^4.0.0",
     "purescript-prelude": "^6.0.0",
@@ -40,5 +40,11 @@
   },
   "devDependencies": {
     "purescript-console": "^6.0.0"
+  },
+  "resolutions": {
+    "purescript-node-streams": "9.0.0",
+    "purescript-node-fs": "9.1.0",
+    "purescript-node-buffer": "9.0.0",
+    "purescript-node-net": "5.1.0"
   }
 }
