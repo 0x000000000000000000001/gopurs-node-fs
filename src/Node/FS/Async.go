@@ -20,12 +20,9 @@ func MkdirImpl(path string, opts interface{}, cb func(interface{}, interface{}) 
 }
 
 func ReadFileImpl(filepath string, opts interface{}, cb func(interface{}, interface{}) interface{}) interface{} {
-    fmt.Printf("DEBUG: ReadFileImpl called with %s\n", filepath)
     data, err := os.ReadFile(filepath)
     if err != nil {
-        fmt.Printf("DEBUG: ReadFileImpl error calling cb\n")
         cb(err, nil)
-        fmt.Printf("DEBUG: ReadFileImpl error cb returned\n")
     } else {
         cb(nil, string(data)) // assuming encoding is utf8 for now
     }
