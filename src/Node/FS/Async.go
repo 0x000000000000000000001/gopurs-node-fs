@@ -2,7 +2,6 @@ package Node_FS_Async
 
 import (
     "os"
-    "fmt"
 )
 
 func unboxString(v interface{}) string {
