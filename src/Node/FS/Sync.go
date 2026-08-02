@@ -4,7 +4,7 @@ import (
     "os"
 )
 
-func ReadFileImpl(filepath string, opts interface{}) interface{} {
+func ReadFileSyncImpl(filepath string, opts interface{}) interface{} {
     data, err := os.ReadFile(filepath)
     if err != nil {
         panic(err)
@@ -12,7 +12,7 @@ func ReadFileImpl(filepath string, opts interface{}) interface{} {
     return string(data)
 }
 
-func WriteFileImpl(filepath string, content string, opts interface{}) interface{} {
+func WriteFileSyncImpl(filepath string, content string, opts interface{}) interface{} {
     data := []byte(content)
     err := os.WriteFile(filepath, data, 0644)
     if err != nil {
@@ -155,4 +155,9 @@ func WriteSyncImpl(arg0 interface{}, arg1 interface{}, arg2 interface{}, arg3 in
 func CloseSyncImpl(arg0 interface{}) interface{} {
     panic("Not implemented: closeSyncImpl")
     return nil
+}
+
+func ExistsSyncImpl(filepath string) interface{} {
+    _, err := os.Stat(filepath)
+    return err == nil
 }
