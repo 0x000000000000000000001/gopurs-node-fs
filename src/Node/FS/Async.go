@@ -2,6 +2,7 @@ package Node_FS_Async
 
 import (
     "os"
+	"gopurs/output/gopurs_runtime"
 )
 
 func unboxString(v interface{}) string {
@@ -42,7 +43,16 @@ func WriteFileImpl(filepath string, content string, opts interface{}, cb func(in
 func AccessImpl(arg0 interface{}, arg1 interface{}, arg2 interface{}) interface{} { panic("Not implemented: accessImpl"); return nil }
 func CopyFileImpl(arg0 interface{}, arg1 interface{}, arg2 interface{}, arg3 interface{}) interface{} { panic("Not implemented: copyFileImpl"); return nil }
 func MkdtempImpl(arg0 interface{}, arg1 interface{}, arg2 interface{}) interface{} { panic("Not implemented: mkdtempImpl"); return nil }
-func RenameImpl(arg0 interface{}, arg1 interface{}, arg2 interface{}) interface{} { panic("Not implemented: renameImpl"); return nil }
+func RenameImpl(oldPath string, newPath string, cb func(interface{}, interface{}) interface{}) interface{} {
+	
+	err := os.Rename(oldPath, newPath)
+	if err != nil {
+		cb(err, nil)
+	} else {
+		cb(nil, nil)
+	}
+	return nil
+}
 func TruncateImpl(arg0 interface{}, arg1 interface{}, arg2 interface{}) interface{} { panic("Not implemented: truncateImpl"); return nil }
 func ChownImpl(arg0 interface{}, arg1 interface{}, arg2 interface{}, arg3 interface{}) interface{} { panic("Not implemented: chownImpl"); return nil }
 func ChmodImpl(arg0 interface{}, arg1 interface{}, arg2 interface{}) interface{} { panic("Not implemented: chmodImpl"); return nil }
@@ -52,7 +62,15 @@ func LinkImpl(arg0 interface{}, arg1 interface{}, arg2 interface{}) interface{} 
 func SymlinkImpl(arg0 interface{}, arg1 interface{}, arg2 interface{}, arg3 interface{}) interface{} { panic("Not implemented: symlinkImpl"); return nil }
 func ReadlinkImpl(arg0 interface{}, arg1 interface{}) interface{} { panic("Not implemented: readlinkImpl"); return nil }
 func RealpathImpl(arg0 interface{}, arg1 interface{}, arg2 interface{}) interface{} { panic("Not implemented: realpathImpl"); return nil }
-func UnlinkImpl(arg0 interface{}, arg1 interface{}) interface{} { panic("Not implemented: unlinkImpl"); return nil }
+func UnlinkImpl(path string, cb func(interface{}, interface{}) interface{}) interface{} {
+	err := os.Remove(path)
+	if err != nil {
+		cb(err, nil)
+	} else {
+		cb(nil, nil)
+	}
+	return nil
+}
 func RmdirImpl(arg0 interface{}, arg1 interface{}, arg2 interface{}) interface{} { panic("Not implemented: rmdirImpl"); return nil }
 func RmImpl(arg0 interface{}, arg1 interface{}, arg2 interface{}) interface{} { panic("Not implemented: rmImpl"); return nil }
 func ReaddirImpl(arg0 interface{}, arg1 interface{}) interface{} { panic("Not implemented: readdirImpl"); return nil }
