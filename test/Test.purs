@@ -35,7 +35,7 @@ main = do
   let fp = Path.concat
 
   e <- S.exists (fp [ "test", "Test.purs" ])
-  log $ "Test.purs exists? " <> show e
+  log $ "Path is: " <> (fp ["test", "Test.purs"]) <> " exists? " <> show e
 
   file <- S.readTextFile UTF8 (fp [ "test", "Test.purs" ])
   log "\n\nreadTextFile sync result:"
