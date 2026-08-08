@@ -73,12 +73,12 @@ main = do
   log $ show $ isSocket stats
   log "isSymbolicLink:"
   log $ show $ isSymbolicLink stats
-  -- log "modifiedTime:"
-  -- log $ show $ modifiedTime stats
-  -- log "accessedTime:"
-  -- log $ show $ accessedTime stats
-  -- log "statusChangedTime:"
-  -- log $ show $ statusChangedTime stats
+  log "modifiedTime:"
+  log $ show $ modifiedTime stats
+  log "accessedTime:"
+  log $ show $ accessedTime stats
+  log "statusChangedTime:"
+  log $ show $ statusChangedTime stats
 
   S.symlink (fp [ "tmp", "Test1.js" ]) (fp [ "tmp", "TestSymlink.js" ]) FileLink
 
@@ -125,12 +125,12 @@ main = do
         log $ show $ isSocket x'
         log "isSymbolicLink:"
         log $ show $ isSymbolicLink x'
-        -- log "modifiedTime:"
-        -- log $ show $ modifiedTime x'
-        -- log "accessedTime:"
-        -- log $ show $ accessedTime x'
-        -- log "statusChangedTime:"
-        -- log $ show $ statusChangedTime x'
+        log "modifiedTime:"
+        log $ show $ modifiedTime x'
+        log "accessedTime:"
+        log $ show $ accessedTime x'
+        log "statusChangedTime:"
+        log $ show $ statusChangedTime x'
 
   A.symlink (fp [ "tmp", "Test.js" ]) (fp [ "tmp", "TestSymlink.js" ]) FileLink \u ->
     case u of
