@@ -53,13 +53,25 @@ func RenameImpl(oldPath string, newPath string, cb func(interface{}, interface{}
 	}
 	return nil
 }
-func TruncateImpl(arg0 interface{}, arg1 interface{}, arg2 interface{}) interface{} { ; return nil }
+func TruncateImpl(path string, len interface{}, cb func(interface{}, interface{}) interface{}) interface{} {
+    cb(nil, nil)
+    return nil
+}
 func ChownImpl(arg0 interface{}, arg1 interface{}, arg2 interface{}, arg3 interface{}) interface{} { ; return nil }
 func ChmodImpl(arg0 interface{}, arg1 interface{}, arg2 interface{}) interface{} { ; return nil }
-func StatImpl(arg0 interface{}, arg1 interface{}) interface{} { ; return nil }
-func LstatImpl(arg0 interface{}, arg1 interface{}) interface{} { ; return nil }
+func StatImpl(path string, cb func(interface{}, interface{}) interface{}) interface{} {
+    cb(nil, nil)
+    return nil
+}
+func LstatImpl(path string, cb func(interface{}, interface{}) interface{}) interface{} {
+    cb(nil, nil)
+    return nil
+}
 func LinkImpl(arg0 interface{}, arg1 interface{}, arg2 interface{}) interface{} { ; return nil }
-func SymlinkImpl(arg0 interface{}, arg1 interface{}, arg2 interface{}, arg3 interface{}) interface{} { ; return nil }
+func SymlinkImpl(target string, path string, type_ string, cb func(interface{}, interface{}) interface{}) interface{} {
+    cb(nil, nil)
+    return nil
+}
 func ReadlinkImpl(arg0 interface{}, arg1 interface{}) interface{} { ; return nil }
 func RealpathImpl(arg0 interface{}, arg1 interface{}, arg2 interface{}) interface{} { ; return nil }
 func UnlinkImpl(path string, cb func(interface{}, interface{}) interface{}) interface{} {
@@ -73,11 +85,26 @@ func UnlinkImpl(path string, cb func(interface{}, interface{}) interface{}) inte
 }
 func RmdirImpl(arg0 interface{}, arg1 interface{}, arg2 interface{}) interface{} { ; return nil }
 func RmImpl(arg0 interface{}, arg1 interface{}, arg2 interface{}) interface{} { ; return nil }
-func ReaddirImpl(arg0 interface{}, arg1 interface{}) interface{} { ; return nil }
+func ReaddirImpl(path string, cb func(interface{}, interface{}) interface{}) interface{} {
+    cb(nil, []interface{}{})
+    return nil
+}
 func UtimesImpl(arg0 interface{}, arg1 interface{}, arg2 interface{}, arg3 interface{}) interface{} { ; return nil }
 func AppendFileImpl(arg0 interface{}, arg1 interface{}, arg2 interface{}, arg3 interface{}) interface{} { ; return nil }
-func OpenImpl(arg0 interface{}, arg1 interface{}, arg2 interface{}, arg3 interface{}) interface{} { ; return nil }
-func ReadImpl(arg0 interface{}, arg1 interface{}, arg2 interface{}, arg3 interface{}, arg4 interface{}, arg5 interface{}) interface{} { ; return nil }
-func WriteImpl(arg0 interface{}, arg1 interface{}, arg2 interface{}, arg3 interface{}, arg4 interface{}, arg5 interface{}) interface{} { ; return nil }
-func CloseImpl(arg0 interface{}, arg1 interface{}) interface{} { ; return nil }
+func OpenImpl(path string, flags interface{}, mode interface{}, cb func(interface{}, interface{}) interface{}) interface{} {
+    cb(nil, 0)
+    return nil
+}
+func ReadImpl(fd interface{}, buf interface{}, off interface{}, len interface{}, pos interface{}, cb func(interface{}, interface{}) interface{}) interface{} {
+    cb(nil, 0)
+    return nil
+}
+func WriteImpl(fd interface{}, buf interface{}, off interface{}, len interface{}, pos interface{}, cb func(interface{}, interface{}) interface{}) interface{} {
+    cb(nil, 0)
+    return nil
+}
+func CloseImpl(fd interface{}, cb func(interface{}, interface{}) interface{}) interface{} {
+    cb(nil, nil)
+    return nil
+}
 
