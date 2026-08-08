@@ -97,10 +97,10 @@ main = do
       log "\n\ntruncate result:"
       either (log <<< show) (log <<< show) y
 
---   A.readFile (fp [ "test", "Test.purs" ]) $ \mbuf -> do
---     buf <- traverse Buffer.freeze mbuf
---     log "\n\nreadFile result:"
---     either (log <<< show) (log <<< show) buf
+  A.readFile (fp [ "test", "Test.purs" ]) $ \mbuf -> do
+    buf <- traverse Buffer.freeze mbuf
+    log "\n\nreadFile result:"
+    either (log <<< show) (log <<< show) buf
 
   A.readTextFile UTF8 (fp [ "test", "Test.purs" ]) $ \x -> do
     log "\n\nreadTextFile result:"
@@ -148,15 +148,15 @@ main = do
               either (log <<< show) (\_ -> log "Success") result
 
   let fdFile = fp [ "tmp", "FD.json" ]
---   fd0 <- S.fdOpen fdFile W (Just 420)
---   buf0 <- Buffer.fromString "[ 42 ]" UTF8
---   bytes0 <- S.fdAppend fd0 buf0
---   S.fdFlush fd0
---   S.fdClose fd0
---   fd1 <- S.fdOpen fdFile R Nothing
---   buf1 <- Buffer.create =<< Buffer.size buf0
---   bytes1 <- S.fdNext fd1 buf1
---   S.fdClose fd1
+  fd0 <- S.fdOpen fdFile W (Just 420)
+  buf0 <- Buffer.fromString "[ 42 ]" UTF8
+  bytes0 <- S.fdAppend fd0 buf0
+  S.fdFlush fd0
+  S.fdClose fd0
+  fd1 <- S.fdOpen fdFile R Nothing
+  buf1 <- Buffer.create =<< Buffer.size buf0
+  bytes1 <- S.fdNext fd1 buf1
+  S.fdClose fd1
 
   log "statSync on a non-existing file should be catchable"
   r <- catchException'
