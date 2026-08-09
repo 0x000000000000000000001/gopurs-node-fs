@@ -24,7 +24,18 @@ func ReadFileImpl(filepath string, opts interface{}, cb func(interface{}, interf
     if err != nil {
         cb(err, nil)
     } else {
-        cb(nil, string(data)) // assuming encoding is utf8 for now
+        hasEncoding := false
+        if v, ok := opts.(gopurs_runtime.Value); ok {
+            m := gopurs_runtime.UnboxObject(v)
+            _, hasEncoding = m["encoding"]
+        } else if m, ok := opts.(map[string]interface{}); ok {
+            _, hasEncoding = m["encoding"]
+        }
+        if hasEncoding {
+            cb(nil, string(data))
+        } else {
+            cb(nil, gopurs_runtime.Any(data))
+        }
     }
     return nil
 }

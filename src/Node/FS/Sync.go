@@ -11,7 +11,17 @@ func ReadFileSyncImpl(filepath string, opts interface{}) interface{} {
     if err != nil {
         panic(err)
     }
-    return string(data)
+    hasEncoding := false
+    if v, ok := opts.(gopurs_runtime.Value); ok {
+        m := gopurs_runtime.UnboxObject(v)
+        _, hasEncoding = m["encoding"]
+    } else if m, ok := opts.(map[string]interface{}); ok {
+        _, hasEncoding = m["encoding"]
+    }
+    if hasEncoding {
+        return string(data)
+    }
+    return gopurs_runtime.Any(data)
 }
 
 func WriteFileSyncImpl(filepath string, content string, opts interface{}) interface{} {
