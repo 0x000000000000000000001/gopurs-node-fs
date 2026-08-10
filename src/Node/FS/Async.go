@@ -58,11 +58,11 @@ func WriteFileImpl(filepath string, content string, opts interface{}, cb func(in
 	return nil
 }
 
-func AccessImpl(filepath string, mode interface{}, cb func(interface{}, interface{}) interface{}) interface{} {
+func AccessImpl(filepath string, mode interface{}, cb func(interface{}) interface{}) interface{} {
 	go func() {
 		info, err := os.Stat(filepath)
 		if err != nil {
-			cb(err, nil)
+			cb(err)
 			return
 		}
 		
@@ -70,11 +70,11 @@ func AccessImpl(filepath string, mode interface{}, cb func(interface{}, interfac
 		if ok && modeVal.IntVal == 2 {
 			isReadOnly := info.Mode().Perm()&0222 == 0
 			if isReadOnly {
-				cb(os.ErrPermission, nil)
+				cb(os.ErrPermission)
 				return
 			}
 		}
-		cb(nil, nil)
+		cb(nil)
 	}()
 	return nil
 }
