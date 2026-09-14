@@ -13,3 +13,4 @@ package-lock.json
 output
 output.bak
 .psc-ide-port
+/test/node-fs-tests*/
