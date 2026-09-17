@@ -1,6 +1,7 @@
 package Node_FS_Async
 
 import (
+	"fmt"
 	"os"
 	"path/filepath"
 	"gopurs/output/gopurs_runtime"
@@ -164,6 +165,10 @@ func StatImpl(path string, cb func(interface{}, interface{}) interface{}) interf
 	go func() {
 		info, err := os.Stat(path)
 		if err != nil {
+			// Match Node's missing-file marker while retaining the native cause.
+			if os.IsNotExist(err) {
+				err = fmt.Errorf("ENOENT: %w", err)
+			}
 			cb(err, nil)
 		} else {
 			cb(nil, info)
