@@ -26,15 +26,18 @@
         },
         "test": {
           "dependencies": [
+            "aff",
             "arrays",
             "assert",
             "console",
+            "control",
             "effect",
             "either",
             "exceptions",
             "foldable-traversable",
             "maybe",
             "minibench",
+            "node-process",
             "partial",
             "prelude",
             "refs",
@@ -743,6 +746,9 @@
       "node-path": {
         "path": "../gopurs-node-path"
       },
+      "node-process": {
+        "path": "../gopurs-node-process"
+      },
       "node-streams": {
         "path": "../gopurs-node-streams"
       },
@@ -1003,6 +1009,26 @@
         "transformers"
       ]
     },
+    "foreign-object": {
+      "type": "registry",
+      "version": "4.1.0",
+      "integrity": "sha256-x/Q7r80z/vmHRKvPwhYmHP/DnJciPtsyGfRTMzayKIU=",
+      "dependencies": [
+        "arrays",
+        "foldable-traversable",
+        "functions",
+        "gen",
+        "lists",
+        "maybe",
+        "prelude",
+        "st",
+        "tailrec",
+        "tuples",
+        "typelevel-prelude",
+        "unfoldable",
+        "unsafe-coerce"
+      ]
+    },
     "functions": {
       "type": "local",
       "path": "../gopurs-functions",
@@ -1181,6 +1207,21 @@
         "prelude"
       ]
     },
+    "node-process": {
+      "type": "local",
+      "path": "../gopurs-node-process",
+      "dependencies": [
+        "effect",
+        "foreign",
+        "foreign-object",
+        "maybe",
+        "node-event-emitter",
+        "node-streams",
+        "posix-types",
+        "prelude",
+        "unsafe-coerce"
+      ]
+    },
     "node-streams": {
       "type": "local",
       "path": "../gopurs-node-streams",
@@ -1286,6 +1327,16 @@
       "type": "local",
       "path": "../gopurs-partial",
       "dependencies": []
+    },
+    "posix-types": {
+      "type": "registry",
+      "version": "6.0.0",
+      "integrity": "sha256-Je5jG439F/SFO/IvVevZnWVxDIonrehlKuJkefP2lHE=",
+      "dependencies": [
+        "maybe",
+        "newtype",
+        "prelude"
+      ]
     },
     "prelude": {
       "type": "local",
@@ -1407,6 +1458,15 @@
       "version": "4.0.1",
       "integrity": "sha256-BBqYOSnAKmayRvR5mtZoCf4SlYs2ipatD/+5nQx73aw=",
       "dependencies": []
+    },
+    "typelevel-prelude": {
+      "type": "registry",
+      "version": "7.0.0",
+      "integrity": "sha256-+pHi14/40mTj/+lmCWqL0T7iXIXD1+NSg/KItyyoB0A=",
+      "dependencies": [
+        "prelude",
+        "type-equality"
+      ]
     },
     "unfoldable": {
       "type": "local",
