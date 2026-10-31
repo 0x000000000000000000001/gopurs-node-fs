@@ -39,7 +39,10 @@
     "purescript-unsafe-coerce": "^6.0.0"
   },
   "devDependencies": {
-    "purescript-console": "^6.0.0"
+    "purescript-aff": "^8.0.0",
+    "purescript-console": "^6.0.0",
+    "purescript-control": "^6.0.0",
+    "purescript-node-process": "^11.2.0"
   },
   "resolutions": {
     "purescript-node-streams": "9.0.0",

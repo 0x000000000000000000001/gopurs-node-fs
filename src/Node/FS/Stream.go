@@ -6,8 +6,8 @@ import (
 )
 
 func CreateWriteStreamImpl(filepath string) interface{} {
-	f, _ := os.OpenFile(filepath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0644)
-	return Node_EventEmitter_NewImpl(f)
+	f, err := os.OpenFile(filepath, os.O_WRONLY|os.O_CREATE|os.O_TRUNC, 0644)
+	return Node_Stream_CreateNativeWritable(f, err)
 }
 
 func CreateWriteStreamOptsImpl(filepath string, opts interface{}) interface{} {
@@ -38,8 +38,8 @@ func FdCreateWriteStreamOptsImpl(fd interface{}, opts interface{}) interface{} {
 }
 
 func CreateReadStreamImpl(filepath string) interface{} {
-	f, _ := os.Open(filepath)
-	return Node_EventEmitter_NewImpl(f)
+	f, err := os.Open(filepath)
+	return Node_Stream_CreateNativeReadable(f, err)
 }
 
 func CreateReadStreamOptsImpl(filepath string, opts interface{}) interface{} {

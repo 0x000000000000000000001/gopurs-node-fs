@@ -22,8 +22,10 @@ package:
   test:
     main: Test.Main
     dependencies:
+      - aff
       - assert
       - console
+      - control
       - effect
       - exceptions
       - partial
@@ -33,6 +35,7 @@ package:
       - either
       - foldable-traversable
       - maybe
+      - node-process
       - prelude
       - refs
       - tailrec
@@ -75,6 +78,8 @@ workspace:
       path: "../gopurs-node-event-emitter"
     node-path:
       path: "../gopurs-node-path"
+    node-process:
+      path: "../gopurs-node-process"
     node-streams:
       path: "../gopurs-node-streams"
     nullable:
