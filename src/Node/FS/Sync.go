@@ -3,6 +3,7 @@ package Node_FS_Sync
 import (
 	"os"
 	"path/filepath"
+	"strconv"
 	"gopurs/output/gopurs_runtime"
 )
 
@@ -103,7 +104,13 @@ func ChownSyncImpl(filepath string, uid float64, gid float64) interface{} {
 }
 
 func ChmodSyncImpl(filepath string, mode string) interface{} {
-	// Skip parsing string modes like '0777' for now
+	permissions, err := strconv.ParseUint(mode, 8, 32)
+	if err != nil {
+		panic(err)
+	}
+	if err := os.Chmod(filepath, os.FileMode(permissions)); err != nil {
+		panic(err)
+	}
 	return nil
 }
 

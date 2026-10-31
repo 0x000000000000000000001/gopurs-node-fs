@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 	"path/filepath"
+	"strconv"
 	"gopurs/output/gopurs_runtime"
 )
 
@@ -156,7 +157,11 @@ func ChownImpl(path string, uid interface{}, gid interface{}, cb func(interface{
 
 func ChmodImpl(path string, mode interface{}, cb func(interface{}, interface{}) interface{}) interface{} {
 	go func() {
-		cb(nil, nil)
+		permissions, err := strconv.ParseUint(gopurs_runtime.Unbox[string](mode), 8, 32)
+		if err == nil {
+			err = os.Chmod(path, os.FileMode(permissions))
+		}
+		cb(err, nil)
 	}()
 	return nil
 }
